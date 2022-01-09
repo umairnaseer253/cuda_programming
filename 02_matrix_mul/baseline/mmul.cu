@@ -46,7 +46,7 @@ void verify_result(vector<int> &a, vector<int> &b, vector<int> &c, int N) {
 
 int main() {
   // Matrix size of 1024 x 1024;
-  int N = 1 << 10;
+  int N = 253;
 
   // Size (in bytes) of matrix
   size_t bytes = N * N * sizeof(int);
@@ -71,10 +71,10 @@ int main() {
   cudaMemcpy(d_b, h_b.data(), bytes, cudaMemcpyHostToDevice);
 
   // Threads per CTA dimension
-  int THREADS = 32;
+  int THREADS = 8;
 
   // Blocks per grid dimension (assumes THREADS divides N evenly)
-  int BLOCKS = N / THREADS;
+  int BLOCKS = 3;
 
   // Use dim3 structs for block  and grid dimensions
   dim3 threads(THREADS, THREADS);
